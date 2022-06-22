@@ -1,0 +1,128 @@
+.header {
+  background-color: #003580;
+  color: white;
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  &__container {
+    width: 100%;
+    max-width: 1024px;
+    margin:20px 0px 100px 0px;
+  }
+
+  &__list {
+    display: flex;
+    gap: 40px;
+  }
+
+  &__listItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__listItem:first-child.active {
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  &__listItemTitle {
+    text-transform: capitalize;
+  }
+  
+  &__desc {
+    margin:20px 0px;
+  }
+
+  &__btn {
+    background-color: #0071c2;
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  &__searchBar {
+    height: 30px;
+    background-color: white;
+    border: 3px solid #febb02;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    max-width: 1024px;
+  }
+
+  &__icon,  &__searchBarText {
+    color:lightgray ;
+  }
+
+  &__searchBarItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  &__searchBarInput {
+      border: none;
+      outline: none;
+  }
+
+  &__calendar {
+    position: absolute;
+    padding-top: 20px;
+    top: 25px;
+    left: 0px;
+    box-shadow:5px 5px 15px 5px gray ;
+  }
+
+  &__searchBarOption {
+    position: absolute;
+    background-color: white;
+    color: gray;
+    padding: 20px 10px;
+    top:25px;
+    left: 0px;
+    border-radius: 5px;
+    box-shadow:5px 5px 15px 5px gray ;
+  }
+
+  &__searchBarOptionItem {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &__searchBarOptionCounter {
+    display: flex;
+    color: black;
+    font-size: 12px;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__searchBarOptionBtn {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #0071c2;
+    color:#0071c2;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: white;
+  }
+
+  &__searchBarOptionBtn:disabled {
+    cursor: not-allowed;
+  }
+ 
+}

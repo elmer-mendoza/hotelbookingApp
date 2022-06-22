@@ -7,6 +7,7 @@ import{
 import Hotel from "./pages/hotel/Hotel";
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
+import './App.css'
 
 function App() {
   return (
