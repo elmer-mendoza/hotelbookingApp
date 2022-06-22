@@ -9,13 +9,27 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { faCalendarDays,faBed, faPerson } from "@fortawesome/free-solid-svg-icons"
 
 
-const HeaderList = () => {
-  return(
-    headerIcons.map(({title,icon},i)=> 
-      <div key={i} className="header__listItem active">
-        <FontAwesomeIcon icon={icon}/>
-        <span className="header__listItemTitle">{title}</span>
+const SearchBarOptions = ({options,handleOption}) => {
+  
+  const {adult,child,room} = options
+  const occupancyOptions =  [
+      {name:adult, type:"Adults",string:"adult"},
+      {name:child, type:"Children",string:"child"},
+      {name:room, type:"Rooms", string:"room"}
+    ]
+  return (
+    occupancyOptions.map(({name,type,string})=>{
+      console.log(name,type,string)
+    return(
+      <div className="header__searchBarOptionItem">
+        <div className="header__searchBarOptionText">{type}</div>
+        <div className="header__searchBarOptionCounter">
+          <button className="header__searchBarOptionBtn" disabled={name <= (type=="Children" ? 0 : 1)} onClick={()=>handleOption(string,"d")}>-</button>
+          <span className="header__searchBarOptionNum">{name}</span>
+          <button className="header__searchBarOptionBtn" onClick={()=>handleOption(string,"i")}>+</button>
+        </div>
       </div>
+    )}
     )
   )
 }
@@ -57,32 +71,8 @@ const HeaderSearchBar = (props) => {
       <FontAwesomeIcon icon={faPerson} className="header__icon"/>
       <span className="header__searchBarText">{`${adult} Adults ${child} Children ${room} Rooms`}</span>
       {openOption &&
-      <div className="header__searchBarOption" >
-        <div className="header__searchBarOptionItem">
-          <div className="header__searchBarOptionText">Adults</div>
-          <div className="header__searchBarOptionCounter">
-            <button className="header__searchBarOptionBtn" disabled={adult <= 1} onClick={()=>handleOption("adult","d")}>-</button>
-            <span className="header__searchBarOptionNum">{adult}</span>
-            <button className="header__searchBarOptionBtn" onClick={()=>handleOption("adult","i")}>+</button>
-          </div>
-        </div>
-        <div className="header__searchBarOptionItem">
-          <div className="header__searchBarOptionText">Children</div>
-          <div className="header__searchBarOptionCounter">
-            <button className="header__searchBarOptionBtn" disabled={child <= 0} onClick={()=>handleOption("child","d")}>-</button>
-            <span className="header__searchBarOptionNum">{child}</span>
-            <button className="header__searchBarOptionBtn" onClick={()=>handleOption("child","i")}>+</button>
-          </div>
-        </div>
-        <div className="header__searchBarOptionItem">
-          <div className="header__searchBarOptionText">Rooms</div>
-          <div className="header__searchBarOptionCounter">
-            <button className="header__searchBarOptionBtn" disabled={room <= 1} onClick={()=>handleOption("room","d")}>-</button>
-            <span className="header__searchBarOptionNum">{room}</span>
-            <button className="header__searchBarOptionBtn" onClick={()=>handleOption("room","i")}>+</button>
-          </div>
-        </div>
-        
+      <div className="header__searchBarOptions" >
+        <SearchBarOptions options={option} handleOption={handleOption}/>
       </div>
       }
     </div>
@@ -95,34 +85,20 @@ const HeaderSearchBar = (props) => {
 
 
 const Header = () => {
+ 
   const [openDate,setOpenDate] = useState(false)
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection'
-    }
-  ]);
+ 
+  const [date, setDate] = useState([{startDate: new Date(),endDate: new Date(),key: 'selection'}]);
   const {startDate,endDate} = date[0];
   const start = format(startDate,"MMM/dd/yyyy");
   const end = format(endDate,"MMM/dd/yyyy");
  
   const [openOption,setOpenOption] = useState(false)
-  const [option, setOption] = useState(
-    {
-      adult: 1,
-      child: 0,
-      room: 1
-    }
-  );
-
+  const [option, setOption] = useState({adult: 1, child: 0,room: 1});
 
   return (
     <div className="header">
       <div className="header__container">
-        <div className="header__list">
-          <HeaderList />
-        </div>
         <h1 className="header__title">A lifetime of discounts? It's Genius.</h1>
         <p className="header_desc">Get rewarded for your travels - unlock instant savings of 10% or more with a free BM Square account</p>
         <button className="header__btn">Sign in / Register</button>

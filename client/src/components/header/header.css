@@ -106,7 +106,7 @@
           box-shadow: 5px 5px 15px 5px gray;
 }
 
-.header__searchBarOption {
+.header__searchBarOptions {
   position: absolute;
   background-color: white;
   color: gray;

@@ -6,7 +6,6 @@ import './home.css'
 function Home() {
   return (
     <div>
-      <Navbar/>
       <Header/>
     </div>
   )
