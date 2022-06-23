@@ -104,6 +104,7 @@
   left: 0px;
   -webkit-box-shadow: 5px 5px 15px 5px gray;
           box-shadow: 5px 5px 15px 5px gray;
+  z-index: 2;
 }
 
 .header__searchBarOptions {
@@ -116,6 +117,7 @@
   border-radius: 5px;
   -webkit-box-shadow: 5px 5px 15px 5px gray;
           box-shadow: 5px 5px 15px 5px gray;
+  z-index: 2;
 }
 
 .header__searchBarOptionItem {

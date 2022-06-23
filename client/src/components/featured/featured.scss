@@ -1,0 +1,33 @@
+.featured {
+  width: 100%;
+  max-width: 1024px;
+  display:flex;
+  justify-content:space-between;
+  gap: 20px;
+  z-index: 1;
+  flex-basis: auto;
+
+  &__item {
+    position: relative;
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 200px; 
+  }
+
+  &__img {
+    width: 350px;
+    height: auto;
+    object-fit:cover;
+  }
+
+  &__titles {
+    position: absolute;
+    bottom: 20px;
+    left: 20px
+  }
+  
+  &__titles h2 {
+    line-height: 0;
+  }
+}

@@ -1,0 +1,40 @@
+.featured {
+  width: 100%;
+  max-width: 1024px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 20px;
+  z-index: 1;
+  -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+}
+
+.featured__item {
+  position: relative;
+  color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 200px;
+}
+
+.featured__img {
+  width: 350px;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.featured__titles {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.featured__titles h2 {
+  line-height: 0;
+}
+/*# sourceMappingURL=featured.css.map */
