@@ -1,0 +1,20 @@
+.propertyList {
+  width: 100%;
+  max-width: 1024px;
+  display:flex;
+  justify-content:space-between;
+  font-size: 14px;
+  gap: 20px;
+  
+
+  &__item img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  &__item h2 {
+    font-size: 20px;
+    line-height: 0;
+  }
+}

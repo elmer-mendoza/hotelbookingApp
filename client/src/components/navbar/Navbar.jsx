@@ -1,7 +1,7 @@
 import './navbar.css'
 import { headerIcons } from "../../data/data"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import { faCalendarDays,faBed, faPerson } from "@fortawesome/free-solid-svg-icons"
+
 
 
 

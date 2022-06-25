@@ -12,4 +12,10 @@
           align-items: center;
   gap: 30px;
 }
+
+.home__title {
+  width: 1024px;
+  text-align: start;
+  font-size: 20px;
+}
 /*# sourceMappingURL=home.css.map */

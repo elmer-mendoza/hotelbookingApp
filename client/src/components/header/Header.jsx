@@ -1,6 +1,5 @@
 import {useState} from 'react'
 import "./header.css"
-import { headerIcons } from "../../data/data"
 import {DateRange} from "react-date-range"
 import {format} from "date-fns"
 import 'react-date-range/dist/styles.css'; // main css file
@@ -13,19 +12,18 @@ const SearchBarOptions = ({options,handleOption}) => {
   
   const {adult,child,room} = options
   const occupancyOptions =  [
-      {name:adult, type:"Adults",string:"adult"},
-      {name:child, type:"Children",string:"child"},
-      {name:room, type:"Rooms", string:"room"}
+      {numberOfOccupant:adult, typeOfOccupant:"Adults",string:"adult"},
+      {numberOfOccupant:child, typeOfOccupant:"Children",string:"child"},
+      {numberOfOccupant:room, typeOfOccupant:"Rooms", string:"room"}
     ]
   return (
-    occupancyOptions.map(({name,type,string})=>{
-      console.log(name,type,string)
+    occupancyOptions.map(({numberOfOccupant,typeOfOccupant,string})=>{
     return(
       <div className="header__searchBarOptionItem">
-        <div className="header__searchBarOptionText">{type}</div>
+        <div className="header__searchBarOptionText">{typeOfOccupant}</div>
         <div className="header__searchBarOptionCounter">
-          <button className="header__searchBarOptionBtn" disabled={name <= (type=="Children" ? 0 : 1)} onClick={()=>handleOption(string,"d")}>-</button>
-          <span className="header__searchBarOptionNum">{name}</span>
+          <button className="header__searchBarOptionBtn" disabled={numberOfOccupant <= (typeOfOccupant==="Children" ? 0 : 1)} onClick={()=>handleOption(string,"d")}>-</button>
+          <span className="header__searchBarOptionNum">{numberOfOccupant}</span>
           <button className="header__searchBarOptionBtn" onClick={()=>handleOption(string,"i")}>+</button>
         </div>
       </div>
