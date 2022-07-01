@@ -6,11 +6,14 @@ import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { faCalendarDays,faBed, faPerson } from "@fortawesome/free-solid-svg-icons"
+import { useNavigate } from 'react-router-dom';
+import { useSearchOptionContext } from '../../context/searchOptionContextProvider';
 
 
 const SearchBarOptions = ({options,handleOption}) => {
   
   const {adult,child,room} = options
+  console.log(options)
   const occupancyOptions =  [
       {numberOfOccupant:adult, typeOfOccupant:"Adults",string:"adult"},
       {numberOfOccupant:child, typeOfOccupant:"Children",string:"child"},
@@ -33,12 +36,14 @@ const SearchBarOptions = ({options,handleOption}) => {
 }
 
 const HeaderSearchBar = (props) => {
-  const [openDate,setOpenDate,setDate,date,start,end] =props.searchBarDate;
-  const [option,setOption,openOption,setOpenOption] =props.searchBarOption;
-  const {adult,child,room} =option;
+  const [openDate,setOpenDate,setDate,date,start,end,destination,setDestination] =props.searchBarDate;
+  const [occupancyOptions,setOccupancyOptions,openOption,setOpenOption] =props.searchBarOption;
+  const {adult,child,room} =occupancyOptions;
+
+  const navigate = useNavigate()
 
   const handleOption = (name,operation) => {
-     setOption(prev=>{
+    setOccupancyOptions(prev=>{
       return {
       ...prev,
       [name]: operation === "i" ? prev[name]+1 : prev[name]-1
@@ -46,11 +51,15 @@ const HeaderSearchBar = (props) => {
   })
   }
 
+  const handleSearch = () => {
+    navigate('/hotels',{state:{destination,date,occupancyOptions}})
+  }
+
   return(
   <div className="header__searchBar">
     <div className="header__searchBarItem">
       <FontAwesomeIcon icon={faBed} className="header__icon"/>
-      <input type="text"placeholder="Where are you going ?" className="header__searchBarInput"/>
+      <input type="text"placeholder="Where are you going ?" className="header__searchBarInput" onChange={(e)=> setDestination(e.target.value)} value={destination}/>
     </div>
     <div className="header__searchBarItem" onClick={()=> setOpenDate(true)} onMouseLeave={()=> setOpenDate(false)}>
       <FontAwesomeIcon icon={faCalendarDays} className="header__icon"/>
@@ -70,12 +79,12 @@ const HeaderSearchBar = (props) => {
       <span className="header__searchBarText">{`${adult} Adults ${child} Children ${room} Rooms`}</span>
       {openOption &&
       <div className="header__searchBarOptions" >
-        <SearchBarOptions options={option} handleOption={handleOption}/>
+        <SearchBarOptions options={occupancyOptions} handleOption={handleOption}/>
       </div>
       }
     </div>
     <div className="header__searchBarItem">
-      <button className="header__btn">Search</button>
+      <button className="header__btn" onClick={handleSearch}>Search</button>
     </div>
   </div>
   )
@@ -84,15 +93,15 @@ const HeaderSearchBar = (props) => {
 
 const Header = () => {
  
-  const [openDate,setOpenDate] = useState(false)
- 
-  const [date, setDate] = useState([{startDate: new Date(),endDate: new Date(),key: 'selection'}]);
+  
+  const {destination,setDestination,date, setDate,occupancyOptions,setOccupancyOptions} = useSearchOptionContext()
   const {startDate,endDate} = date[0];
   const start = format(startDate,"MMM/dd/yyyy");
   const end = format(endDate,"MMM/dd/yyyy");
  
+  const [openDate,setOpenDate] = useState(false)
   const [openOption,setOpenOption] = useState(false)
-  const [option, setOption] = useState({adult: 1, child: 0,room: 1});
+  
 
   return (
     <div className="header">
@@ -101,8 +110,8 @@ const Header = () => {
         <p className="header_desc">Get rewarded for your travels - unlock instant savings of 10% or more with a free BM Square account</p>
         <button className="header__btn">Sign in / Register</button>
         <HeaderSearchBar 
-        searchBarDate={[openDate,setOpenDate,setDate,date,start,end]}
-        searchBarOption={[option,setOption,openOption,setOpenOption]}
+        searchBarDate={[openDate,setOpenDate,setDate,date,start,end,destination,setDestination]}
+        searchBarOption={[occupancyOptions,setOccupancyOptions,openOption,setOpenOption]}
         />
       </div>
     </div>
