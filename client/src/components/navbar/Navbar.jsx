@@ -25,7 +25,6 @@ const Navbar = () => {
     <>
       <div className="navbar">
         <div className="navbar__container">
-          {/* <span className="navbar__logo">BM Square Booking</span> */}
           <span className="navbar__logo"><Link to={'./'}>BM Square Booking</Link></span>
           <div className="navbar__items">
             <button className="navbar__button navbar__button--register">Register</button>

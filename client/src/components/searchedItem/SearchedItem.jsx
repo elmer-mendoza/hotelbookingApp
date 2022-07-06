@@ -9,7 +9,7 @@ function SearchedItem() {
         <span className="searchedItem__distance">500m from center</span>
         <span className="searchedItem__taxiOption">Free airport taxi</span>
         <span className="searchedItem__subtitle">Studio Apartment with Air conditioning</span>
-        <span className="searchedItem__features">Entire studio  1 bathroom  21sqm   1 full bed</span>
+        <span className="searchedItem__features">Entire studio • 1 bathroom • 21m² 1 full bed</span>
         <span className="searchedItem__cancelOption">Free cancellation</span>
         <span className="searchedItem__cancelOptionSubtitle">You can cancel later, so lock in this great price today!</span>
       </div>
@@ -21,7 +21,7 @@ function SearchedItem() {
         <div className="searchedItem__detailTexts">
           <span className="searchedItem__price">$123</span>
           <span className="searchedItem__taxOption">Includes taxes and fees</span>
-          <button className="searchItem__checkButton">See availability</button>
+          <button className="searchedItem__checkButton">See availability</button>
         </div>
       </div>
     </div>

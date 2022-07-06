@@ -16,6 +16,10 @@
 
     &__logo {
         font-weight: 500;
+        &>a {
+          color: #fff;
+          text-decoration-line: none;
+        }
     }
     
     &__button {

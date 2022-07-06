@@ -1,4 +1,5 @@
 .searchedItem {
+  font-size: 12px;
   border: 1px solid lightgray;
   padding: 10px;
   border-radius: 5px;
@@ -38,10 +39,6 @@
   color: #0071c2;
 }
 
-.searchedItem__distance {
-  font-size: 12px;
-}
-
 .searchedItem__details {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -59,7 +56,6 @@
 }
 
 .searchedItem__taxiOption {
-  font-size: 12px;
   background-color: #008009;
   color: #fff;
   width: -webkit-max-content;
@@ -70,22 +66,15 @@
 }
 
 .searchedItem__subtitle {
-  font-size: 12px;
   font-weight: bold;
 }
 
-.searchedItem__features {
-  font-size: 12px;
-}
-
 .searchedItem__cancelOption {
-  font-size: 12px;
   color: #008009;
   font-weight: bold;
 }
 
 .searchedItem__cancelOptionSubtitle {
-  font-size: 12px;
   color: #008009;
 }
 
@@ -100,6 +89,7 @@
 
 .searchedItem__rating > span {
   font-weight: 500;
+  font-size: 16px;
 }
 
 .searchedItem__rating > button {
@@ -127,7 +117,6 @@
 }
 
 .searchedItem__taxOption {
-  font-size: 12px;
   color: gray;
 }
 
@@ -137,5 +126,6 @@
   font-weight: bold;
   padding: 10px 5px;
   border: none;
+  border-radius: 5px;
 }
 /*# sourceMappingURL=searchedItem.css.map */

@@ -68,7 +68,7 @@
   margin-bottom: 5px;
 }
 
-.list__item span {
+.list__item > span {
   height: 30px;
   padding: 5px;
   background-color: #fff;
@@ -85,6 +85,9 @@
   position: absolute;
   top: 60px;
   left: 0;
+  -webkit-box-shadow: 5px 5px 15px 5px gray;
+          box-shadow: 5px 5px 15px 5px gray;
+  z-index: 2;
 }
 
 .list__optionItem {

@@ -1,4 +1,5 @@
 .searchedItem {
+  font-size: 12px;
   border: 1px solid lightgray;
   padding: 10px;
   border-radius: 5px;
@@ -25,10 +26,6 @@
     color: #0071c2;
   }
 
-  &__distance {
-    font-size: 12px;
-  }
-
   &__details {
     flex: 1;
     display: flex;
@@ -37,7 +34,6 @@
   }
 
   &__taxiOption {
-    font-size: 12px;
     background-color: #008009;
     color: #fff;
     width: max-content;
@@ -46,23 +42,16 @@
   }
 
   &__subtitle {
-    font-size: 12px;
     font-weight: bold;
   }
 
-  &__features {
-    font-size: 12px;
-  }
-
   &__cancelOption {
-    font-size: 12px;
     color: #008009;
     font-weight: bold;
   }
 
   &__cancelOptionSubtitle {
-    font-size: 12px;
-    color: #008009;
+     color: #008009;
   }
  
   &__rating {
@@ -71,6 +60,7 @@
     
     &>span {
       font-weight: 500;
+      font-size: 16px;
     }
     
     &>button {
@@ -94,7 +84,6 @@
   }
 
   &__taxOption{
-    font-size: 12px;
     color: gray;
   }
 
@@ -104,5 +93,6 @@
     font-weight: bold;
     padding: 10px 5px;
     border: none;
+    border-radius: 5px;
   }
 }

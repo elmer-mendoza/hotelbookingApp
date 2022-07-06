@@ -9,7 +9,6 @@ function MailList() {
         <input type="text" placeholder="Your Email"/>
         <button>Subscribe</button>
       </div>
-
     </div>
   )
 }

@@ -28,6 +28,12 @@
   font-weight: 500;
 }
 
+.navbar__logo > a {
+  color: #fff;
+  -webkit-text-decoration-line: none;
+          text-decoration-line: none;
+}
+
 .navbar__button {
   margin-left: 20px;
   border: none;

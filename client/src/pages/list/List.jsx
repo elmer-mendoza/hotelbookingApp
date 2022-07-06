@@ -35,12 +35,15 @@ function List() {
           </div>
           <div className="list__item" onClick={()=> setOpenDate(true)} onMouseLeave={()=> setOpenDate(false)}>
             <label>Check-in Date</label>
-            <span  >{`${start} to ${end}`}</span>
+            <span className="list__itemSpan">{`${start} to ${end}`}</span>
             {openDate && 
             <DateRange
+              editableDateInputs={true}
+              moveRangeOnFirstSelection={false}
               onChange={item => setDate([item.selection])}
               minDate={new Date()}
               ranges={date}
+              rangeColors={['#0000ff']}
               className="list__calendar"
             />}
           </div>
@@ -72,6 +75,10 @@ function List() {
           <button>Search</button>
         </div>
         <div className="list__result">
+          <SearchedItem/>
+          <SearchedItem/>
+          <SearchedItem/>
+          <SearchedItem/>
           <SearchedItem/>
           <SearchedItem/>
           <SearchedItem/>
