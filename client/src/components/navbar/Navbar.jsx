@@ -2,11 +2,7 @@ import './navbar.css'
 import { headerIcons } from "../../data/data"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { Link } from 'react-router-dom'
-
-
-
-
-
+import { useNavigate } from 'react-router-dom'
 
 export const NavList = () => {
   return(
@@ -21,6 +17,9 @@ export const NavList = () => {
 
 
 const Navbar = () => {
+
+  const navigate=useNavigate()
+
   return (
     <>
       <div className="navbar">
@@ -28,7 +27,7 @@ const Navbar = () => {
           <span className="navbar__logo"><Link to={'./'}>BM Square Booking</Link></span>
           <div className="navbar__items">
             <button className="navbar__button navbar__button--register">Register</button>
-            <button className="navbar__button navbar__button--login">Login</button>
+            <button className="navbar__button navbar__button--login" onClick={() => navigate('/auth/login')}>Login</button>
           </div>
         </div>
       </div>

@@ -4,6 +4,9 @@ import { useState } from "react"
 import Footer from "../../components/footer/Footer"
 import MailList from "../../components/mailList/MailList"
 import "./hotel.css"
+import {useLocation} from "react-router-dom"
+import useFetch from "../../components/hooks/useFetch"
+import { useSearchOptionContext } from "../../context/searchOptionContextProvider"
 
 const photos = [
   {
@@ -26,21 +29,43 @@ const photos = [
   },
 ];
 
-function Hotel() {
-    const [isImageSliderOpen,setIsImageSliderOpen] = useState(false)
-    const [slideNumber,setSlideNumber] = useState(0)
 
+
+
+function Hotel() {
+
+  const location =useLocation()
+  const id = ((location.pathname.split("/"))[3])
+
+  const [isImageSliderOpen,setIsImageSliderOpen] = useState(false)
+  const [slideNumber,setSlideNumber] = useState(0)
+
+  const {data,loading,error} = useFetch(`http://localhost:8080/api/hotels/find/${id}`)
+  const {distance,name,cheapestPrices} = data
+
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+
+  function dayDifference(date1, date2) {
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+    return diffDays;
+  }
+
+  const {date,occupancyOptions} = useSearchOptionContext()
+
+  const days = dayDifference(date[0].endDate, date[0].startDate);
+
+  console.log(days)
+  
     const handleImagePreview =(i)=>{
-      console.log(i)
       setIsImageSliderOpen(true);
       setSlideNumber(i)
     }
 
-    const handleImageSlider = (operation) => {
-      console.log(slideNumber)
+    const handleImageSlider = (operation,slideLength) => {
       let newSlideNumber;
-      if (operation==="l"){ newSlideNumber = slideNumber === 0 ? 5 :slideNumber -1 }
-      if (operation==="r"){ newSlideNumber = slideNumber === 5 ? 0 :slideNumber + 1 }
+      if (operation==="l"){ newSlideNumber = slideNumber === 0 ? slideLength :slideNumber -1 }
+      if (operation==="r"){ newSlideNumber = slideNumber === slideLength ? 0 :slideNumber + 1 }
       setSlideNumber(newSlideNumber)
      }
 
@@ -50,22 +75,22 @@ function Hotel() {
       <div className="hotel__imageSlider">
         <div className="hotel__imageSliderWrapper" onMouseLeave={()=>setIsImageSliderOpen(false)}>
           <FontAwesomeIcon onClick={()=> setIsImageSliderOpen(false)} icon={faXmark} className="hotel__imageSliderXmark"/>
-          <FontAwesomeIcon onClick={()=>handleImageSlider('l')} icon={faArrowLeft} className="hotel__imageSliderLeftArrow"/>
+          <FontAwesomeIcon onClick={()=>handleImageSlider('l',5)} icon={faArrowLeft} className="hotel__imageSliderLeftArrow"/>
           <img src={photos[slideNumber].src} alt="" />
-          <FontAwesomeIcon onClick={()=>handleImageSlider('r')} icon={faArrowRight} color="white" className="hotel__imageSliderRightArrow"/>
+          <FontAwesomeIcon onClick={()=>handleImageSlider('r',5)} icon={faArrowRight} color="white" className="hotel__imageSliderRightArrow"/>
         </div>
       </div>}
       <div className="hotel__wrapper">
         <button className="hotel__bookNow">
           Reserve or Book Now!
         </button>
-        <h1 className="hotel__title">Grand Hotel</h1>
+        <h1 className="hotel__title">{name}</h1>
         <div className="hotel__address">
           <FontAwesomeIcon icon={faLocationDot}/>
           <span>Elton St 125  New york</span>
         </div>
         <span className="hotel__distance">
-          Excellent location  500 from center
+          Excellent location  {distance} from center
         </span>
         <span className="hotel__priceHighLight">
           Book a stay over $114 at this property and get a free airport taxi
@@ -85,12 +110,12 @@ function Hotel() {
             <p className="hotel__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque accusamus, voluptas sed qui recusandae blanditiis, laboriosam nostrum quo quos similique necessitatibus autem nulla ea porro dolor reprehenderit facilis ducimus cumque pariatur possimus corrupti corporis numquam id repellat. Fuga iure vitae modi reiciendis, quis impedit, magni, deleniti natus tenetur voluptatem harum!</p>
           </div>
           <div className="hotel__detailPrice">
-            <h1>Perfect for a 9-night stay!</h1>
+            <h1>Perfect for a {days}-night stay!</h1>
             <span>
               Located in the real heart of Krakow, this property has an excellent location score of 9.8!
             </span>
             <h2>
-              <b>$945</b> (9 nights)
+              <b>${days*cheapestPrices*(occupancyOptions.room)}</b> ({days} nights)
             </h2>
             <button>Reserve or Book Now!</button>
           </div>

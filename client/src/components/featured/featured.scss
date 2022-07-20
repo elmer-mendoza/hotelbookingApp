@@ -7,12 +7,14 @@
   z-index: 1;
   flex-basis: auto;
 
+
   &__item {
     position: relative;
     color: white;
     border-radius: 10px;
     overflow: hidden;
     height: 250px; 
+    cursor: pointer;
   }
 
   &__img {

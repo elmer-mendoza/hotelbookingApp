@@ -35,6 +35,7 @@
 
 .featuredProperties__city {
   font-weight: 300;
+  text-transform: capitalize;
 }
 
 .featuredProperties__price {

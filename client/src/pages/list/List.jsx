@@ -4,25 +4,40 @@ import {useSearchOptionContext} from "../../context/searchOptionContextProvider.
 import {format} from "date-fns"
 import {DateRange} from "react-date-range"
 import SearchedItem from "../../components/searchedItem/SearchedItem"
-
+import useFetch from "../../components/hooks/useFetch"
 
 
 function List() {
+
     const [openDate,setOpenDate] = useState(false)
+    const [minPrice,setMinPrice] =useState();
+    const [maxPrice,setMaxPrice] =useState();
     const {destination,setDestination,date,setDate,occupancyOptions,setOccupancyOptions} = useSearchOptionContext()
     const {adult,child,room} =occupancyOptions
     const {startDate,endDate} = date[0];
     const start = format(startDate,"MMM/dd/yyyy");
     const end = format(endDate,"MMM/dd/yyyy");
 
-      const handleUpdateOption = e => {
-        setOccupancyOptions(prev=>{
-          return {
-          ...prev,
-          [e.name]: parseInt(e.value)
-         }
-      })
-      } 
+    const {data,loading,error,reFetch} = useFetch(`http://localhost:8080/api/hotels?city=${destination || "madrid"}&min=${minPrice || 1}&max=${maxPrice || 9999}`)
+
+    console.log(data)
+
+    const handleUpdateOption = e => {
+      setOccupancyOptions(prev=>{
+        return {
+        ...prev,
+        [e.name]: parseInt(e.value)
+        }
+    })
+    } 
+
+    const handlePriceRange =(e,priceRange) => {
+     e.preventDefault();
+     const value = e.target.value;
+     priceRange === "min" ? setMinPrice(value) : setMaxPrice(value);
+     reFetch()
+    }
+    
 
   return (
     <div className='list'>
@@ -52,11 +67,11 @@ function List() {
             <div className="list__optionList">
               <div className="list__optionItem">
                 <label>Min price (per night)</label>
-                <input type="number" min={0} />
+                <input type="number" value={minPrice} onChange={(e)=>handlePriceRange(e,"min")} min={0} />
               </div>
               <div className="list__optionItem">
                 <label>Max price (per night)</label>
-                <input type="number" min={0}/>
+                <input type="number"value={maxPrice} onChange={(e)=>handlePriceRange(e,"max")} min={0}/>
               </div>
               <div className="list__optionItem">
                 <label>Adult</label>
@@ -75,14 +90,11 @@ function List() {
           <button>Search</button>
         </div>
         <div className="list__result">
-          <SearchedItem/>
-          <SearchedItem/>
-          <SearchedItem/>
-          <SearchedItem/>
-          <SearchedItem/>
-          <SearchedItem/>
-          <SearchedItem/>
-          <SearchedItem/>
+          {data.map(property => {
+            return(
+               <SearchedItem property={property}/>
+            )
+          })}
         </div>
       </div>
     </div>

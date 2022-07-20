@@ -15,7 +15,6 @@ export const SearchOptionContextProvider =({children}) => {
     const [destination,setDestination] = useState(initialState.destination)
     const [date, setDate] = useState(initialState.date);
     const [occupancyOptions, setOccupancyOptions] = useState(initialState.occupancyOptions);
-
  
     return (
         <SearchOptionContext.Provider value={{
