@@ -1,0 +1,29 @@
+.propertyType {
+  width: 100%;
+  max-width: 1024px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 14px;
+  gap: 20px;
+}
+
+.propertyType__item {
+  text-transform: capitalize;
+}
+
+.propertyType__item img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+
+.propertyType__item h2 {
+  font-size: 20px;
+  line-height: 0;
+}
+/*# sourceMappingURL=propertyType.css.map */

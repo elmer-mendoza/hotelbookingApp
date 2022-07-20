@@ -1,0 +1,73 @@
+
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+
+  & h1 {
+    color: rgb(9, 9, 124);
+  }
+
+  &__icon {
+    margin:0 7px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: auto;
+    box-shadow:5px 5px 15px 5px gray ;
+    border-radius: 5px;
+  }
+
+  &__username {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__password {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__email {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & label {
+    margin-bottom: 3px;
+    font-weight:500;
+    color:rgb(92, 90, 90);
+    font-size: small;
+  }
+  & input {
+    margin-bottom: 10px;
+    width: 250px;
+    height: 30px;
+    border: 1px solid rgb(185, 184, 184);
+    border-radius: 3px;
+    padding:2px;
+    font-size: 14px;
+    &:focus {
+      outline-color: rgba(44, 41, 197, 0.712);
+    }
+
+  }
+
+  & button {
+    width: 250px;
+    height: 40px;
+    margin:20px 0;
+    background-color: rgba(20, 20, 245, 0.945);
+    border: none;
+    border-radius: 5px;
+    color:#fff;
+    font-size: 16px;
+  }
+}
