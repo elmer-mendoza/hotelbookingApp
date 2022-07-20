@@ -9,9 +9,9 @@ export const verifyToken = (req,res,next) => {
 
     const verify = jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) return {status:401 ,message:"Invalid token!"};
-        req.user=user
+         req.user= user
     })
-    return verify
+    return  verify
   };
   
   export const verifyUser = (req, res, next) => {
